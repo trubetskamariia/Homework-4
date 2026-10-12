@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 
 namespace Task_5
 {
-    // Базовий клас Товар
     public class Product
     {
         public string Name { get; set; } = string.Empty;
@@ -17,7 +16,6 @@ namespace Task_5
         public virtual string ExtraDetails => "-";
     }
 
-    // Клас-нащадок Продукти
     public class FoodProduct : Product
     {
         public int ExpirationDays { get; set; }
@@ -28,7 +26,6 @@ namespace Task_5
         public override string ExtraDetails => $"Термін: {ExpirationDays} дн., К-ть: {Quantity} {Unit}";
     }
 
-    // Клас-нащадок Книги
     public class BookProduct : Product
     {
         public int PageCount { get; set; }
@@ -39,7 +36,6 @@ namespace Task_5
         public override string ExtraDetails => $"Стор: {PageCount}, Вид-во: {Publisher}";
     }
 
-    // Логіка сторінки
     public partial class MainPage : ContentPage
     {
         public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
@@ -81,12 +77,11 @@ namespace Task_5
             });
         }
 
-        // Кнопка 1: Додати продукт
         private void OnAddFoodClicked(object sender, EventArgs e)
         {
             Products.Add(new FoodProduct
             {
-                Name = $"Яблука #{_foodCounter}",
+                Name = $"Яблука {_foodCounter}",
                 Price = 30.00m + _foodCounter,
                 OriginCountry = "Україна",
                 PackagingDate = DateTime.Now,
@@ -99,7 +94,6 @@ namespace Task_5
             _foodCounter++;
         }
 
-        // Кнопка 2: Додати книгу
         private void OnAddBookClicked(object sender, EventArgs e)
         {
             Products.Add(new BookProduct
@@ -117,7 +111,6 @@ namespace Task_5
             _bookCounter++;
         }
 
-        // Кнопка 3: Видалити обраний товар
         private async void OnDeleteClicked(object sender, EventArgs e)
         {
             if (ProductsGrid.SelectedItem is Product selectedProduct)
