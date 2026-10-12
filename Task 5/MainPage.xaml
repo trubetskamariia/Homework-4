@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Task_5.MainPage"
+             Title="Облік товарів">
+
+    <Grid RowDefinitions="Auto, *" Padding="15" RowSpacing="15">
+
+        <HorizontalStackLayout Grid.Row="0" Spacing="10" HorizontalOptions="Center">
+            <Button Text="Додати продукт" Clicked="OnAddFoodClicked" BackgroundColor="#00BFFF" TextColor="#FFFAFA" />
+            <Button Text="Додати книгу" Clicked="OnAddBookClicked" BackgroundColor="#556B2F" TextColor="#FFFAFA" />
+            <Button Text="Видалити обраний" Clicked="OnDeleteClicked" BackgroundColor="#8B0000" TextColor="#FFFAFA" />
+        </HorizontalStackLayout>
+
+        <Border Grid.Row="1" Stroke="#DEB887" StrokeThickness="1">
+            <CollectionView x:Name="ProductsGrid" SelectionMode="Single">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="90, 140, 80, 100, *" BackgroundColor="#DEB887" Padding="5">
+                        <Label Grid.Column="0" Text="Тип" FontAttributes="Bold" />
+                        <Label Grid.Column="1" Text="Назва" FontAttributes="Bold" />
+                        <Label Grid.Column="2" Text="Ціна" FontAttributes="Bold" />
+                        <Label Grid.Column="3" Text="Країна" FontAttributes="Bold" />
+                        <Label Grid.Column="4" Text="Деталі" FontAttributes="Bold" />
+                    </Grid>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="90, 140, 80, 100, *" Padding="5">
+                            <Label Grid.Column="0" Text="{Binding ProductType}" />
+                            <Label Grid.Column="1" Text="{Binding Name}" />
+                            <Label Grid.Column="2" Text="{Binding Price, StringFormat='{0:F2} грн'}" />
+                            <Label Grid.Column="3" Text="{Binding OriginCountry}" />
+                            <Label Grid.Column="4" Text="{Binding ExtraDetails}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
+
+    </Grid>
+
+</ContentPage>
